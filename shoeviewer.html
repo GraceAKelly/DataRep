@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-        <h1>shoes</h1>
+        <h1>Shoes</h1>
         <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
         <div>
             <table class="table" id="shoesTable">
@@ -36,15 +36,12 @@
     <script>
     function showCreate(){
         document.getElementById('showCreateButton').style.display="none"
-        document.getElementById('shoesTable').style.display="none"
+        document.getElementById('bookTable').style.display="none"
         document.getElementById('createUpdateForm').style.display="block"
-
         document.getElementById('createLabel').style.display="inline"
         document.getElementById('updateLabel').style.display="none"
-
         document.getElementById('doCreateButton').style.display="block"
         document.getElementById('doUpdateButton').style.display="none"
-
     }
     function showViewAll(){
         document.getElementById('showCreateButton').style.display="block"
@@ -77,7 +74,7 @@
         shoes.style = form.querySelector('input[name="style"]').value
         shoes.designer = form.querySelector('input[name="designer"]').value
         shoes.Price = form.querySelector('input[name="Price"]').value
-        console.log(JSON.stringify(shoes))
+        // console.log(JSON.stringify(shoes))
         createshoesAjax(shoes)
         
         
@@ -159,8 +156,8 @@
         return shoes
     }
     function getAllAjax(){
-        host=window.location.origin
-             $.ajax({
+        host= window.location.origin
+            $.ajax({
                 "url": host+"/shoes/1",
                 "method":"GET",
                 "data":"",
@@ -168,20 +165,16 @@
                 "success":function(result){
                     //console.log(result);
                     for (shoes of result){
-                        addshoesToTable(shoes);
-                    }
-                
+                        addshoesToTable(shoes)                    
                 },
                 "error":function(xhr,status,error){
                     console.log("error: "+status+" msg:"+error);
                 }
             });
-            console.log(host)
-
-    }
+        }
     function createshoesAjax(shoes){
         
-        console.log(JSON.stringify(shoes));
+        // console.log(JSON.stringify(shoes));
         host=window.location.origin
              $.ajax({
                 "url": host+"/shoes/1",
@@ -197,10 +190,10 @@
                     showViewAll()
                 },
                 "error":function(xhr,status,error){
-                    console.log("error: "+status+" msg:"+error);
+                   // console.log("error: "+status+" msg:"+error);
                 }
             });
-        console.log(host)
+       // console.log(host)
     }
     function updateshoesAjax(shoes){
         
@@ -220,7 +213,7 @@
                     console.log("error: "+status+" msg:"+error);
                 }
             });
-        console.log(host)
+        //console.log(host)
     }
     function deleteshoesAjax(id){
         
@@ -240,7 +233,7 @@
                     console.log("error: "+status+" msg:"+error);
                 }
             });
-        console.log(host)
+       // console.log(host)
     }
     getAllAjax();
   
