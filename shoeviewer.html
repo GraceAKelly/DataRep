@@ -156,84 +156,79 @@
         return shoes
     }
     function getAllAjax(){
-        host= window.location.origin
-            $.ajax({
-                "url": host+"/shoes/1",
-                "method":"GET",
-                "data":"",
-                "dataType": "JSON",
-                "success":function(result){
-                    //console.log(result);
-                    for (shoes of result){
-                        addshoesToTable(shoes)                    
-                },
-                "error":function(xhr,status,error){
-                    console.log("error: "+status+" msg:"+error);
+        host = window.location.origin
+        $.ajax({
+            "url": host+"/shoes",
+            "method":"GET",
+            "data":"",
+            "dataType": "JSON",
+            "success":function(result){
+                //console.log(result);
+                for (shoes of result){
+                    addshoesToTable(shoes);                    
                 }
-            });
-        }
+
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
     function createshoesAjax(shoes){
-        
-        // console.log(JSON.stringify(shoes));
-        host=window.location.origin
-             $.ajax({
-                "url": host+"/shoes/1",
-                "method":"POST",
-                "data":JSON.stringify(shoes),
-                "dataType": "JSON",
-                contentType: "application/json; charset=utf-8",
-                "success":function(result){
-                    //console.log(result);
-                    shoes.id = result.id
-                    addshoesToTable(shoes)
-                    clearForm()
-                    showViewAll()
-                },
-                "error":function(xhr,status,error){
-                   // console.log("error: "+status+" msg:"+error);
-                }
-            });
-       // console.log(host)
+        host = window.location.origin
+        console.log(JSON.stringify(shoes));
+        $.ajax({
+            "url": host +"/shoes",
+            "method":"POST",
+            "data":JSON.stringify(shoes),
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+                //console.log(result);
+                shoes.id = result.id
+                addshoesToTable(shoes)
+                clearForm()
+                showViewAll()
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
     }
     function updateshoesAjax(shoes){
-        
+        host = window.location.origin
         console.log(JSON.stringify(shoes));
-        host=window.location.origin
-            $.ajax({
-                "url": host+"/shoes/1"+encodeURI(shoes.id),
-                "method":"PUT",
-                "data":JSON.stringify(shoes),
-                "dataType": "JSON",
-                contentType: "application/json; charset=utf-8",
-                "success":function(result){
-                     // console.log(result);
+        $.ajax({
+            "url": host+"/shoes/"+encodeURI(shoes.id),
+            "method":"PUT",
+            "data":JSON.stringify(shoes),
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+                 // console.log(result);
                   
-                },
-                "error":function(xhr,status,error){
-                    console.log("error: "+status+" msg:"+error);
-                }
-            });
-        //console.log(host)
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
     }
     function deleteshoesAjax(id){
-        
-        //console.log(JSON.stringify('deleting '+id));
         host=window.location.origin
-            $.ajax({
-                "url": host+"/shoes/1"+encodeURI(id),
-                "method":"DELETE",
-                "data":"",
-                "dataType": "JSON",
-                contentType: "application/json; charset=utf-8",
-                "success":function(result){
+        $.ajax({
+            "url": host+"/shoes/"+encodeURI(id),
+            "method":"DELETE",
+            "data":"",
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
                 //console.log(result);
                   
-                },
-                "error":function(xhr,status,error){
-                    console.log("error: "+status+" msg:"+error);
-                }
-            });
-       // console.log(host)
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });     
     }
     getAllAjax();
   
